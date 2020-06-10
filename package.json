@@ -1,0 +1,9 @@
+{
+  "name": "aws-lambda-payment-api",
+  "version": "1.0.0",
+  "description": "Serverless CRUD service exposing a REST HTTP interface",
+  "author": "Rod Santillan",
+  "dependencies": {
+    "uuid": "^2.0.3"
+  }
+}

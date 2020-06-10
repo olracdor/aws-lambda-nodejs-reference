@@ -1,0 +1,55 @@
+functions:
+  getPayments:
+    handler: src/getPaymentsHandler.getPayments
+    # The `events` block defines how to trigger the handler.helloWorld code
+    events:
+      - http:
+          path: /v1/payments
+          method: get
+          cors: true
+  getPaymentById:
+    handler: src/getPaymentByIdHandler.getPaymentById
+    # The `events` block defines how to trigger the handler.helloWorld code
+    events:
+      - http:
+          path: /v1/payments/{paymentId}
+          method: get
+          cors: true
+  getPaymentsByUserId:
+    handler: src/getPaymentsByUserIdHandler.getPaymentsByUserId
+    # The `events` block defines how to trigger the handler.helloWorld code
+    events:
+      - http:
+          path: /v1/payments/user/{userId}
+          method: get
+          cors: true
+          request:
+            template:
+              application/json: >
+                {
+                  "status" : "$input.params('status')"
+                }
+  createPayment:
+    handler: src/createPaymentHandler.createPayment
+    # The `events` block defines how to trigger the handler.helloWorld code
+    events:
+      - http:
+          path: /v1/payments
+          method: post
+          cors: true
+  updatePayment:
+    handler: src/updatePaymentHandler.updatePayment
+    # The `events` block defines how to trigger the handler.helloWorld code
+    events:
+      - http:
+          path: /v1/payments/{paymentId}
+          method: put
+          cors: true
+  deletePayment:
+    handler: src/deletePaymentHandler.deletePayment
+    # The `events` block defines how to trigger the handler.helloWorld code
+    events:
+      - http:
+          path: /v1/payments/{paymentId}
+          method: delete
+          cors: true
