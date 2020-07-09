@@ -9,7 +9,7 @@
     "sinon": "^9.0.2"
   },
   "scripts": {
-    "prebuild": "npx eslint 'src/**' --fix",
+    "lint": "npx eslint 'src/**' --fix",
     "test": ""
   },
   "devDependencies": {

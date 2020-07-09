@@ -1,10 +1,11 @@
-# Abstract Spring project
+# Intro
 
-This project uses Spring Framework and was specifically built for
-Azure Functions but can be used in other Platform.
-
+Reference project for AWS lambda using nodejs and serverless framework
 
 # Deploy
 'serverless deploy'
 or
 'serverless deploy --stage dev' to deploy the specific stage
+
+# Linting
+'npm run lint'
