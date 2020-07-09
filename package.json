@@ -1,9 +1,19 @@
 {
-  "name": "aws-lambda-payment-api",
+  "name": "aws-lambda-nodejs-reference",
   "version": "1.0.0",
   "description": "Serverless CRUD service exposing a REST HTTP interface",
   "author": "Rod Santillan",
   "dependencies": {
-    "uuid": "^2.0.3"
+    "aws-sdk-mock": "^5.1.0",
+    "chai": "^4.2.0",
+    "sinon": "^9.0.2"
+  },
+  "scripts": {
+    "prebuild": "npx eslint 'src/**' --fix",
+    "test": ""
+  },
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "eslint-config-google": "^0.14.0"
   }
 }

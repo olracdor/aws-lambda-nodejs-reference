@@ -5,7 +5,7 @@
 # uses to deploy your code to your provider of choice
 
 # The `service` block is the name of the service
-service: aws-lambda-nodejs-reference-api
+service: aws-lambda-nodejs-reference
 
 # The `provider` block defines where your service will be deployed
 provider:
@@ -14,7 +14,11 @@ provider:
   region: ap-southeast-2
   stage: dev
   environment:
+    service_reference_id: aws-lambda-nodejs-reference-id-generator-${opt:stage, self:provider.stage}-generateReferenceId
+    region: ap-southeast-2
     payment_table: payment-${opt:stage, self:provider.stage}
+    expense_table: expense
+    invoice_table: invoice-${opt:stage, self:provider.stage}
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -25,5 +29,27 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.payment_table}"
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.expense_table}"
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.invoice_table}"
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+      Resource: "arn:aws:lambda:${opt:region, self:provider.region}:*:function:${self:provider.environment.service_reference_id}"
 
 functions: ${file(./src/config/functions.yml):functions}
